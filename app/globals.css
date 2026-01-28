@@ -12,7 +12,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* prefers-color-scheme: white to change to white theme*/
+/* currently, page.js overrides this. */
+@media (prefers-color-scheme: white) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;

@@ -1,17 +1,17 @@
 export default function Navbar() {
     return (
     <nav>
-        <div class="flex p-4 items-center justify-between bg-red-900 text-amber-50 h-14">
-            <a class="hover:underline">Home</a>
-            <ul class="flex space-x-4">
+        <div className="flex p-4 items-center justify-between bg-red-900 text-amber-50 h-14">
+            <a className="hover:underline">Home</a>
+            <ul className="flex space-x-4">
                 <li>
-                    <a class="hover:underline">Events</a>
+                    <a className="hover:underline">Events</a>
                 </li>
                 <li>
-                    <a class="hover:underline">Donate</a>
+                    <a className="hover:underline">Donate</a>
                 </li>
                 <li>
-                    <a class="hover:underline">About</a>
+                    <a className="hover:underline">About</a>
                 </li>
             </ul>
         </div>

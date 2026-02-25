@@ -41,6 +41,14 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col items-start gap-3">
                     <h4 className="text-base font-bold pb-0"> Follow Us </h4>
+                    <a href="https://www.instagram.com/seattle_juststep?igsh=MTNneG00ZmdrM3F1NQ==" className="mx-auto">
+                        <Image
+                            src="/Instagram.png"
+                            alt="Instagram Logo"
+                            width={24}
+                            height={24}
+                        />
+                    </a>
                 </div>  
             </div>
         </footer>

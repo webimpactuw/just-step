@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import EventCarousel from "./components/events/EventCarousel";
+import Mission from "./components/Mission";
 import Testimonial from "./components/Testimonial";
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
       <Hero />
        <EventCarousel events={events} />
       <Testimonial />
+      <Mission />
     </main>
   );
 }

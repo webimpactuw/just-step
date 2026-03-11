@@ -35,12 +35,18 @@ export default function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group relative font-[var(--font-alexandria)] text-[16px] font-bold leading-none text-[color:var(--foreground)] transition-colors duration-150 hover:text-[color:var(--color-tertiary)] md:text-[20px]"
+                    className={`group relative font-[var(--font-alexandria)] text-[16px] font-bold leading-none transition-colors duration-150 md:text-[20px] ${
+                      item.label === "Home"
+                        ? "text-[color:var(--color-tertiary)]"
+                        : "text-[color:var(--foreground)] hover:text-[color:var(--color-tertiary)]"
+                    }`}
                   >
                     {item.label}
                     <span
                       style={{ backgroundColor: "var(--color-tertiary)" }}
-                      className="pointer-events-none absolute left-0 right-0 -bottom-[3px] mx-auto h-[3px] w-full opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                      className={`pointer-events-none absolute left-0 right-0 -bottom-[3px] mx-auto h-[3px] w-full transition-opacity duration-150 ${
+                        item.label === "Home" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
                     />
                   </Link>
                 </li>
@@ -50,10 +56,10 @@ export default function Navbar() {
 
           <Link
             href="/donate"
-            className="inline-flex h-[44px] items-center justify-center rounded-[16px] px-4 font-[var(--font-alexandria)] text-[18px] font-black leading-none text-white shadow-sm transition-colors duration-150 hover:text-[color:var(--foreground)] md:h-[60px] md:rounded-[20px] md:px-5 md:text-[24px]"
+            className="inline-flex h-[44px] items-center justify-center rounded-[16px] border-[3px] border-[color:var(--color-secondary)] px-4 font-[var(--font-alexandria)] text-[18px] font-black leading-none text-white shadow-sm transition-colors duration-150 hover:text-[color:var(--color-secondary)] md:h-[60px] md:rounded-[20px] md:px-5 md:text-[24px]"
             style={{ backgroundColor: "var(--color-secondary)" }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--color-accent)";
+              e.currentTarget.style.backgroundColor = "var(--background)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = "var(--color-secondary)";

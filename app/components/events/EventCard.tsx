@@ -1,14 +1,13 @@
 import Link from "next/link";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 export type EventItem = {
   id: string;
   title: string;
-  start: string; // display-ready text, e.g. "2025-02-20 • 6:00 PM - 9:00 PM"
+  start: string;
   description: string;
-  imageSrc: string; // e.g. "/events/natyanjali.jpg"
-  href: string; // e.g. "/events/natyanjali-festival"
-  ctaLabel?: string; // default: "Learn More"
+  imageSrc: string;
+  href: string;
+  ctaLabel?: string;
 };
 
 type Props = {
@@ -17,33 +16,35 @@ type Props = {
 
 export default function EventCard({ event }: Props) {
   return (
-    <article className="overflow-hidden rounded-md border-2 border-black/10 bg-white text-neutral-900 shadow-[0_10px_28px_rgba(0,0,0,0.25)]">
-      <div className="aspect-[16/9] w-full overflow-hidden bg-neutral-100">
-        {/* Swap to next/image later if desired */}
-        <img
-          src={event.imageSrc}
-          alt={event.title}
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
+    <article className="overflow-hidden rounded-[8px] border-[2px] border-black bg-[#f7f7f7] text-neutral-900 shadow-[0_10px_28px_rgba(0,0,0,0.25)]">
+      <div className="bg-white p-[16px]">
+        <div className="aspect-[16/9] w-full overflow-hidden rounded-[6px] bg-neutral-100">
+          <img
+            src={event.imageSrc}
+            alt={event.title}
+            loading="lazy"
+            draggable={false}
+            className="h-full w-full object-cover pointer-events-none"
+          />
+        </div>
       </div>
 
-      <div className="px-4 pb-4 pt-4">
-        <h3 className="mb-1 text-xl font-extrabold leading-tight">
+      <div className="px-5 pb-5 pt-2">
+        <h3 className="mb-1 text-[20px] font-extrabold leading-tight text-[#222222]">
           {event.title}
         </h3>
 
-        <div className="mb-3 text-xs font-bold text-[#8b3f16]">
+        <div className="mb-4 text-[12px] font-semibold tracking-[0.02em] text-[#9a4c23]">
           {event.start}
         </div>
 
-        <p className="mb-4 text-sm leading-relaxed text-neutral-800">
+        <p className="mb-5 text-[14px] leading-[1.35] text-[#2f2f2f]">
           {event.description}
         </p>
 
         <Link
           href={event.href}
-          className="block w-full rounded-full border-2 border-[#8b3f16] px-3 py-2 text-center text-sm font-extrabold text-[#8b3f16] transition hover:-translate-y-[1px] hover:bg-[#8b3f16] hover:text-white"
+          className="block w-full rounded-full border-[2px] border-[#9a4c23] bg-transparent px-4 py-[11px] text-center text-[15px] font-extrabold text-[#9a4c23] transition hover:bg-[#9a4c23] hover:text-white"
         >
           {event.ctaLabel ?? "Learn More"}
         </Link>

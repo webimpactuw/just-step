@@ -16,69 +16,57 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-[color:var(--background)] shadow-[0_2px_0_rgba(0,0,0,0.10)]">
-      {/* Height 98px, padding L/R 20px, space-between */}
-      <div className="mx-auto flex h-[98px] w-full items-center justify-between px-[20px]">
-        {/* Logo: fills navbar height */}
-        <Link href="/" className="relative h-full w-[260px]">
+      <div className="mx-auto flex w-full flex-wrap items-center justify-between gap-4 px-4 py-4 md:flex-nowrap md:px-5">
+        <Link href="/" className="relative h-[44px] w-[150px] shrink-0 md:h-[60px] md:w-[260px]">
           <Image
             src="/Logo-Text.png"
             alt="JustStep Logo"
             fill
             priority
             className="object-contain object-left"
-            sizes="260px"
+            sizes="(max-width: 768px) 150px, 260px"
           />
         </Link>
 
-        {/* Nav + Donate grouped so spacing is consistent */}
-        <div className="flex items-center gap-[30px]">
+        <div className="flex flex-wrap items-center justify-end gap-4 md:gap-8">
           <nav aria-label="Primary">
-            {/* equal spacing between tabs */}
-            <ul className="flex items-center gap-[30px]">
-              {links.map((item) => {
-                const active = pathname === item.href;
-
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={[
-                        "group relative",
-                        "font-[var(--font-alexandria)] font-bold text-[20px] leading-[1]",
-                        "text-[color:var(--foreground)]",
-                        "transition-colors duration-150",
-                        "hover:text-[color:var(--color-tertiary)]",
-                      ].join(" ")}
-                    >
-                      {item.label}
-
-                      {/* Hover underline (closer to text) */}
-                      <span
-                        style={{ backgroundColor: "var(--color-tertiary)" }}
-                        className="pointer-events-none absolute left-0 right-0 -bottom-[3px] mx-auto h-[3px] w-full 
-                                   opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-                      />
-                    </Link>
-                  </li>
-                );
-              })}
+            <ul className="flex flex-wrap items-center gap-4 md:gap-8">
+              {links.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`group relative font-[var(--font-alexandria)] text-[16px] font-bold leading-none transition-colors duration-150 md:text-[20px] ${
+                      item.label === "Home"
+                        ? "text-[color:var(--color-tertiary)]"
+                        : "text-[color:var(--foreground)] hover:text-[color:var(--color-tertiary)]"
+                    }`}
+                  >
+                    {item.label}
+                    <span
+                      style={{ backgroundColor: "var(--color-tertiary)" }}
+                      className={`pointer-events-none absolute left-0 right-0 -bottom-[3px] mx-auto h-[3px] w-full transition-opacity duration-150 ${
+                        item.label === "Home" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Donate button: height 60px, radius 20px, padding L/R 20px */}
           <Link
             href="/donate"
-            className="font-[var(--font-alexandria)] inline-flex h-[60px] items-center justify-center rounded-[20px] px-[20px] text-[24px] font-black leading-[1] text-white shadow-sm transition-colors duration-150 hover:text-[color:var(--foreground)]"
+            className="inline-flex h-[44px] items-center justify-center rounded-[16px] border-[3px] border-[color:var(--color-secondary)] px-4 font-[var(--font-alexandria)] text-[18px] font-black leading-none text-white shadow-sm transition-colors duration-150 hover:text-[color:var(--color-secondary)] md:h-[60px] md:rounded-[20px] md:px-5 md:text-[24px]"
             style={{ backgroundColor: "var(--color-secondary)" }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--color-accent)";
+              e.currentTarget.style.backgroundColor = "var(--background)";
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--color-secondary)";
+              e.currentTarget.style.backgroundColor = "var(--color-secondary)";
             }}
-            >
+          >
             DONATE
-            </Link>
+          </Link>
         </div>
       </div>
     </header>

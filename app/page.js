@@ -1,7 +1,6 @@
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import EventCarousel from "./components/events/EventCarousel";
 import Hero from "./components/Hero";
+import EventCarousel from "./components/events/EventCarousel";
+import Testimonial from "./components/Testimonial";
 
 export default function Home() {
   const events = [
@@ -35,13 +34,10 @@ export default function Home() {
   ];
 
   return (
-    <div>
-
-      {/* Event Carousel */}
-      <main>
-        <Hero />
-        <EventCarousel events={events} />
-      </main>
-    </div>
+    <main>
+      <Hero />
+       <EventCarousel events={events} />
+      <Testimonial />
+    </main>
   );
 }

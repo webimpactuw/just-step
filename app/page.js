@@ -37,9 +37,9 @@ export default function Home() {
   return (
     <main>
       <Hero />
-       <EventCarousel events={events} />
-      <Testimonial />
       <Mission />
+      <EventCarousel events={events} />
+      <Testimonial />
     </main>
   );
 }

@@ -24,6 +24,8 @@ html, body {
   --color-secondary: #C05812;
   --color-tertiary: #82442B;
   --color-accent: #FFCB77;
+  --color-dark-blue: #3F6F7A;
+  --color-text-light: #FAFAFA;
 
   /* Type */
   --font-display: "Alcazar";

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 function BurstStroke({ cx, cy, length, rotation }) {
@@ -207,23 +208,21 @@ export default function Hero() {
           </p>
 
           {/* CTA */}
-          <button
-            type="button"
-            className="absolute flex items-center justify-center rounded-[20px] border-[3px] bg-[var(--background)] px-[20px] leading-none"
+          <Link
+            href="/events"
+            className="absolute box-border flex items-center justify-center rounded-[20px] border-[3px] border-[var(--color-dark-blue)] bg-[var(--background)] px-[20px] leading-none text-[var(--color-dark-blue)] transition-colors duration-150 hover:bg-[var(--color-dark-blue)] hover:text-[var(--color-text-light)]"
             style={{
               left: "882px",
               top: "438px",
               width: "180px",
               height: "66px",
-              borderColor: "var(--color-dark-blue)",
               fontFamily: "var(--font-alexandria)",
               fontSize: "24px",
               fontWeight: 700,
-              color: "var(--color-dark-blue)",
             }}
           >
             JOIN US
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -39,7 +39,7 @@ function DonationCard({ option }) {
           href={option.href}
           target="_blank"
           rel="noreferrer"
-          className="flex h-12 w-full items-center justify-center rounded-[20px] border-[3px] border-[var(--color-dark-blue)] bg-[var(--color-dark-blue)] px-5 text-center text-[18px] font-bold leading-none text-[var(--color-text-light)] transition-colors duration-200 hover:bg-[#FAFAFA] hover:text-[var(--color-dark-blue)]"
+          className="flex h-12 w-full items-center justify-center rounded-[20px] border-[3px] border-[var(--color-dark-blue)] bg-[var(--color-dark-blue)] px-5 text-center text-[18px] font-bold leading-none text-[var(--color-text-light)] transition-colors duration-200 hover:bg-[var(--color-text-light)] hover:text-[var(--color-dark-blue)]"
         >
           {option.buttonText}
         </a>

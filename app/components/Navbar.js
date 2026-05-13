@@ -62,7 +62,7 @@ export default function Navbar() {
 
           <Link
             href="/donate"
-            className="inline-flex h-[48px] min-w-[118px] box-border items-center justify-center rounded-[20px] border-[3px] border-transparent bg-[#3F6F7A] px-5 font-[var(--font-alexandria)] text-[16px] font-extrabold leading-none text-white transition-colors duration-150 hover:border-[#3F6F7A] hover:bg-[#FAFAFA] hover:text-[#3F6F7A]"
+            className="inline-flex h-[48px] min-w-[118px] box-border items-center justify-center rounded-[20px] border-[3px] border-transparent bg-[var(--color-dark-blue)] px-5 font-[var(--font-alexandria)] text-[16px] font-extrabold leading-none text-white transition-colors duration-150 hover:border-[var(--color-dark-blue)] hover:bg-[var(--color-text-light)] hover:text-[var(--color-dark-blue)]"
           >
             DONATE
           </Link>

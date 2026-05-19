@@ -15,55 +15,54 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="w-full bg-[color:var(--background)] shadow-[0_2px_0_rgba(0,0,0,0.10)]">
-      <div className="mx-auto flex w-full flex-wrap items-center justify-between gap-4 px-4 py-4 md:flex-nowrap md:px-5">
-        <Link href="/" className="relative h-[44px] w-[150px] shrink-0 md:h-[60px] md:w-[260px]">
-          <Image
-            src="/Logo-Text.png"
-            alt="JustStep Logo"
-            fill
-            priority
-            className="object-contain object-left"
-            sizes="(max-width: 768px) 150px, 260px"
-          />
+    <header className="sticky top-0 z-50 w-full bg-[#FAFAFA] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+      <div className="mx-auto flex h-[78px] w-full max-w-[1440px] items-center justify-between px-5">
+        <Link
+          href="/"
+          className="flex h-[78px] w-[431px] shrink-0 items-center px-5 py-[9px]"
+        >
+          <div className="relative h-[60px] w-full">
+            <Image
+              src="/Logo-Text.png"
+              alt="JustStep Logo"
+              fill
+              priority
+              className="object-contain object-left"
+              sizes="431px"
+            />
+          </div>
         </Link>
 
-        <div className="flex flex-wrap items-center justify-end gap-4 md:gap-8">
+        <div className="flex items-center gap-8">
           <nav aria-label="Primary">
-            <ul className="flex flex-wrap items-center gap-4 md:gap-8">
-              {links.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`group relative font-[var(--font-alexandria)] text-[16px] font-bold leading-none transition-colors duration-150 md:text-[20px] ${
-                      item.label === "Home"
-                        ? "text-[color:var(--color-tertiary)]"
-                        : "text-[color:var(--foreground)] hover:text-[color:var(--color-tertiary)]"
-                    }`}
-                  >
-                    {item.label}
-                    <span
-                      style={{ backgroundColor: "var(--color-tertiary)" }}
-                      className={`pointer-events-none absolute left-0 right-0 -bottom-[3px] mx-auto h-[3px] w-full transition-opacity duration-150 ${
-                        item.label === "Home" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+            <ul className="flex items-center gap-8">
+              {links.map((item) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.href);
+
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`inline-flex h-[20px] items-center justify-center border-b-[3px] pb-[0px] font-[var(--font-alexandria)] text-[16px] font-bold leading-none transition-colors duration-150 ${
+                        isActive
+                          ? "border-[#3F6F7A] text-[#3F6F7A]"
+                          : "border-transparent text-[#28282B] hover:border-[#3F6F7A] hover:text-[#3F6F7A]"
                       }`}
-                    />
-                  </Link>
-                </li>
-              ))}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
           <Link
             href="/donate"
-            className="inline-flex h-[44px] items-center justify-center rounded-[16px] border-[3px] border-[color:var(--color-secondary)] px-4 font-[var(--font-alexandria)] text-[18px] font-black leading-none text-white shadow-sm transition-colors duration-150 hover:text-[color:var(--color-secondary)] md:h-[60px] md:rounded-[20px] md:px-5 md:text-[24px]"
-            style={{ backgroundColor: "var(--color-secondary)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--background)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--color-secondary)";
-            }}
+            className="inline-flex h-[48px] min-w-[118px] box-border items-center justify-center rounded-[20px] border-[3px] border-transparent bg-[var(--color-dark-blue)] px-5 font-[var(--font-alexandria)] text-[16px] font-extrabold leading-none text-white transition-colors duration-150 hover:border-[var(--color-dark-blue)] hover:bg-[var(--color-text-light)] hover:text-[var(--color-dark-blue)]"
           >
             DONATE
           </Link>

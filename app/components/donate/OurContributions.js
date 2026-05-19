@@ -120,7 +120,7 @@ export default function OurContributions() {
       }}
     >
       {/* Flower watermark */}
-      <div className="pointer-events-none absolute bottom-0 right-0 opacity-20">
+      <div className="pointer-events-none absolute bottom-0 right-0">
         <Image src="/Flower.png" alt="" width={400} height={433} />
       </div>
 

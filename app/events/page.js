@@ -1,65 +1,81 @@
-import Image from "next/image";
+import EventsBanner from "../components/events/EventsBanner";
+import EventListSection from "../components/events/EventListSection";
+
+const upcomingEvents = [
+  {
+    id: "upcoming-1",
+    day: "17",
+    month: "May",
+    title: "Chenchu Lakshmi Ballet",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
+    href: "#",
+    registerHref: "#",
+  },
+  {
+    id: "upcoming-2",
+    day: "17",
+    month: "May",
+    title: "Chenchu Lakshmi Ballet",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
+    href: "#",
+    registerHref: "#",
+  },
+  {
+    id: "upcoming-3",
+    day: "17",
+    month: "May",
+    title: "Chenchu Lakshmi Ballet",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
+    href: "#",
+    registerHref: "#",
+  },
+];
+
+const pastEvents = [
+  {
+    id: "past-1",
+    day: "17",
+    month: "May",
+    title: "Dance Against COVID",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
+    href: "#",
+  },
+  {
+    id: "past-2",
+    day: "17",
+    month: "May",
+    title: "Dance Against COVID",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
+    href: "#",
+  },
+  {
+    id: "past-3",
+    day: "17",
+    month: "May",
+    title: "Dance Against COVID",
+    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+    location: "Snohomish County PUD",
+    description: "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
+    href: "#",
+  },
+];
 
 export default function Events() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main>
+      <EventsBanner />
+      <EventListSection title="Upcoming Events" events={upcomingEvents} isPast={false} />
+      <EventListSection title="Past Events" events={pastEvents} isPast={true} />
+    </main>
   );
 }

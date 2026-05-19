@@ -115,11 +115,11 @@ export default function OurContributions() {
     <section
       className="relative overflow-hidden px-8 py-14"
       style={{
-        background: "linear-gradient(90deg, #A34E1A 0%, #5C2209 100%)",
+        background: "linear-gradient(90deg, #c7641f 0%, #9f4b18 38%, #7a2d0b 100%)",
       }}
     >
       {/* Flower watermark */}
-      <div className="pointer-events-none absolute bottom-0 right-0 opacity-20">
+      <div className="pointer-events-none absolute bottom-0 right-0">
         <Image src="/Flower.png" alt="" width={400} height={433} />
       </div>
 

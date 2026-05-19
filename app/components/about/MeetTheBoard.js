@@ -83,7 +83,7 @@ function BoardCard({ member }) {
 
 export default function MeetTheBoard() {
   return (
-    <section className="bg-white px-8 py-14">
+    <section id="board-members" className="scroll-mt-[90px] bg-white px-8 py-14">
       <h2
         className="mb-10 text-center text-[#28282B]"
         style={{ fontFamily: '"Alcazar", serif', fontSize: "40px", fontWeight: 400, lineHeight: "100%" }}

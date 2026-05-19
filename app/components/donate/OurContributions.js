@@ -113,7 +113,7 @@ function ContributionRow({ item }) {
 export default function OurContributions() {
   return (
     <section
-      className="relative overflow-hidden px-8 py-14"
+      id="contributions" className="scroll-mt-[90px] relative overflow-hidden px-8 py-14"
       style={{
         background:
           "linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-2) 70%, var(--color-primary-2) 30%)",

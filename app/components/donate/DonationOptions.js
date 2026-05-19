@@ -50,43 +50,18 @@ function DonationCard({ option }) {
 
 export default function DonationOptions() {
   return (
-    <section className="bg-[var(--background)]">
-      <div
-        className="relative overflow-hidden px-6 py-8 md:px-[100px]"
-        style={{
-          background:
-            "linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-2) 70%, var(--color-primary-2) 100%)",
-        }}
-      >        
-        <img
-          src="/Flower Image.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 h-[216px] w-[199px]"
-        />
+    <section
+      id="options"
+      className="scroll-mt-[90px] bg-[var(--background)] px-6 pb-[88px] pt-12 md:px-[100px]"
+    >
+      <h2 className="mb-12 text-center [font-family:var(--font-display)] text-[44px] leading-none text-[var(--foreground)] md:text-[56px]">
+        Donation Options
+      </h2>
 
-        <div className="relative z-10">
-          <h1 className="[font-family:var(--font-display)] text-[48px] leading-none text-[var(--color-text-light)] md:text-[64px]">
-            Support Us
-          </h1>
-
-          <p className="mt-4 max-w-[979px] text-[18px] leading-[150%] tracking-wide text-[var(--color-text-light)] md:text-[20px]">
-            Your generous donations help us continue our mission of preserving
-            and promoting Indian dances
-          </p>
-        </div>
-      </div>
-
-      <div className="px-6 pb-[88px] pt-12 md:px-[100px]">
-        <h2 className="mb-12 text-center [font-family:var(--font-display)] text-[44px] leading-none text-[var(--foreground)] md:text-[56px]">
-          Donation Options
-        </h2>
-
-        <div className="mx-auto grid max-w-[1216px] grid-cols-1 justify-items-center gap-8 lg:grid-cols-2 lg:gap-[128px]">
-          {donationOptions.map((option) => (
-            <DonationCard key={option.name} option={option} />
-          ))}
-        </div>
+      <div className="mx-auto grid max-w-[1216px] grid-cols-1 justify-items-center gap-8 lg:grid-cols-2 lg:gap-[128px]">
+        {donationOptions.map((option) => (
+          <DonationCard key={option.name} option={option} />
+        ))}
       </div>
     </section>
   );

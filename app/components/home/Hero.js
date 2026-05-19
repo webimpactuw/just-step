@@ -1,59 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
 
-function BurstStroke({ cx, cy, length, rotation }) {
-  return (
-    <span
-      aria-hidden="true"
-      className="absolute block rounded-full"
-      style={{
-        left: `${cx}px`,
-        top: `${cy}px`,
-        width: `${length}px`,
-        height: "6px",
-        backgroundColor: "var(--color-accent)",
-        transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
-        transformOrigin: "center center",
-      }}
-    />
-  );
-}
-
-function AccentBurst({ left, top, variant = "topRight" }) {
-  const isTopRight = variant === "topRight";
-
-  const strokes = isTopRight
-    ? [
-        { cx: 28.485, cy: 0, length: 35.23, rotation: -39.64 },
-        { cx: 8.07, cy: 2.55, length: 16.14, rotation: -72.08 },
-        { cx: 26.12, cy: 27.02, length: 18.98, rotation: -12.52 },
-      ]
-    : [
-        { cx: 18.87, cy: 6.86, length: 37.74, rotation: -40.01 },
-        { cx: 41.41, cy: 10.87, length: 17.4, rotation: -72.29 },
-        { cx: 14.89, cy: 0, length: 20.24, rotation: -12.67 },
-      ];
-
+function AccentLines({ src, left, top }) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute overflow-visible"
+      className="pointer-events-none absolute"
       style={{
         left,
         top,
-        width: isTopRight ? "60px" : "70px",
-        height: "55px",
+        width: "38px",
+        height: "31.13px",
       }}
     >
-      {strokes.map((stroke, index) => (
-        <BurstStroke
-          key={index}
-          cx={stroke.cx}
-          cy={stroke.cy}
-          length={stroke.length}
-          rotation={stroke.rotation}
-        />
-      ))}
+      <Image
+        src={src}
+        alt=""
+        fill
+        className="object-contain"
+        sizes="38px"
+      />
     </div>
   );
 }
@@ -101,14 +67,14 @@ export default function Hero() {
 
   return (
     <section
-      className="w-full overflow-x-hidden"
+      className="w-full overflow-hidden"
       style={{
         background:
           "linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-2) 70%, var(--color-primary-2) 100%)",
       }}
     >
       <div
-        className="relative mx-auto w-full"
+        className="relative mx-auto w-full overflow-hidden"
         style={{
           height: `calc(700px * ${scale})`,
         }}
@@ -124,8 +90,10 @@ export default function Hero() {
           {/* Flower watermark */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 right-0"
+            className="pointer-events-none absolute"
             style={{
+              right: "-30px",
+              bottom: "-36px",
               width: "411.85px",
               height: "446.51px",
               opacity: 1.0,
@@ -173,8 +141,8 @@ export default function Hero() {
               height: "260px",
             }}
           >
-            <AccentBurst left="651px" top="13px" variant="topRight" />
-            <AccentBurst left="66px" top="227px" variant="bottomLeft" />
+            <AccentLines src="/lines-top.png" left="658px" top="13px" />
+            <AccentLines src="/lines-bottom.png" left="68px" top="217px" />
 
             <h1
               className="absolute left-0 top-[7.49px] w-[800px] text-center font-normal leading-[1]"

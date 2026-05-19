@@ -1,7 +1,7 @@
-import Hero from "./components/Hero";
+import Hero from "./components/home/Hero";
 import EventCarousel from "./components/events/EventCarousel";
-import Mission from "./components/Mission";
-import Testimonial from "./components/Testimonial";
+import Mission from "./components/home/Mission";
+import Testimonial from "./components/home/Testimonial";
 
 export default function Home() {
   const events = [

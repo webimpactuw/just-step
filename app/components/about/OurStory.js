@@ -1,6 +1,6 @@
 export default function OurStory() {
   return (
-    <section className="w-full bg-[#FAFAFA]">
+    <section id="our-story" className="scroll-mt-[90px] w-full bg-[#FAFAFA]">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-[300px] pb-[88px] pt-14">
         <h2 className="text-center font-[Alcazar] text-[56px] leading-[100%] tracking-[0] text-[#28282B]">
           Our Story

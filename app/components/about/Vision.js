@@ -26,7 +26,7 @@ const visionItems = [
 export default function Vision() {
   return (
     <section
-      className="relative overflow-hidden px-8 py-14"
+      id="vision" className="scroll-mt-[90px] relative overflow-hidden px-8 py-14"
       style={{
         background: "linear-gradient(90deg, #c7641f 0%, #9f4b18 38%, #7a2d0b 100%)",
       }}

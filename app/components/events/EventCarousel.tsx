@@ -12,11 +12,11 @@ type Props = {
   viewAllHref?: string;
 };
 
-function mod(n: number, m: number) {
+function mod(n: number, m: number): number {
   return ((n % m) + m) % m;
 }
 
-type Role = "left" | "center" | "right"; // left=PREV, center=CURRENT, right=NEXT
+type Role = "left" | "center" | "right";
 type Direction = "next" | "prev";
 type VariantKey = "left" | "center" | "right" | "wrapToLeft" | "wrapToRight";
 type Phase = "idle" | "animating" | "resetting";
@@ -40,9 +40,16 @@ export default function EventCarousel({
   });
 
   const { prevEvent, currentEvent, nextEvent } = useMemo(() => {
-    if (n <= 0) return { prevEvent: null, currentEvent: null, nextEvent: null };
+    if (n <= 0) {
+      return { prevEvent: null, currentEvent: null, nextEvent: null };
+    }
+
     if (n === 1) {
-      return { prevEvent: null, currentEvent: events[0], nextEvent: null };
+      return {
+        prevEvent: null,
+        currentEvent: events[0],
+        nextEvent: null,
+      };
     }
 
     const prev = mod(index - 1, n);
@@ -50,6 +57,7 @@ export default function EventCarousel({
 
     if (n === 2) {
       const other = index === 0 ? 1 : 0;
+
       return {
         prevEvent: events[other],
         currentEvent: events[index],
@@ -64,103 +72,106 @@ export default function EventCarousel({
     };
   }, [events, index, n]);
 
+  useEffect(() => {
+    if (n <= 0) return;
+
+    setIndex((i) => mod(i, n));
+    setActiveIndex((i) => mod(i, n));
+  }, [n]);
+
   if (!n) return null;
 
-  if (n === 1 && currentEvent) {
-    return (
-      <section className="relative overflow-hidden bg-[#9c4718] px-4 pb-10 pt-8 text-white">
-        <div className="mx-auto flex max-w-[980px] justify-center">
-          <h2
-            className="text-center text-[44px] font-normal leading-none text-white"
-            style={{ fontFamily: '"Alcazar", serif' }}
-          >
-            {title}
-          </h2>
-        </div>
+  const CENTER_X = 0;
 
-        <div className="mx-auto mt-10 max-w-[720px]">
-          <EventCard event={currentEvent} />
-        </div>
-      </section>
-    );
-  }
+  const SIDE_LEFT_X = -225;
+  const SIDE_RIGHT_X = 225;
 
-  const POS = {
-    leftX: "-48%",
-    centerX: "0%",
-    rightX: "48%",
-  };
+  const SIDE_WIDTH = 464;
+  const SIDE_HEIGHT = 436.6;
+  const CARD_WIDTH = 600;
+  const CARD_HEIGHT = 545;
+
+  const SIDE_SCALE_X = SIDE_WIDTH / CARD_WIDTH;
+  const SIDE_SCALE_Y = SIDE_HEIGHT / CARD_HEIGHT;
+
+  const CARD_TOP = 18;
+  const SIDE_TOP = 48.29;
+
+  const SIDE_SCALE_OFFSET_Y = (CARD_HEIGHT - SIDE_HEIGHT) / 2;
+  const SIDE_Y = SIDE_TOP - CARD_TOP - SIDE_SCALE_OFFSET_Y;
+
+  const SIDE_BLUR = "blur(6.4px)";
 
   const ANIM_SECONDS = 0.65;
+
   const TRANSITION_ANIM = {
     duration: ANIM_SECONDS,
     ease: [0.22, 1, 0.36, 1] as const,
   };
+
   const TRANSITION_NONE = { duration: 0 };
 
   const variants: Variants = {
     left: {
-      x: POS.leftX,
-      y: 0,
-      scale: 0.9,
+      x: SIDE_LEFT_X,
+      y: SIDE_Y,
+      scaleX: SIDE_SCALE_X,
+      scaleY: SIDE_SCALE_Y,
       opacity: 1,
-      filter: "blur(2px)",
+      filter: SIDE_BLUR,
     },
     center: {
-      x: POS.centerX,
+      x: CENTER_X,
       y: 0,
-      scale: 1,
+      scaleX: 1,
+      scaleY: 1,
       opacity: 1,
       filter: "blur(0px)",
     },
-
     right: {
-      x: POS.rightX,
-      y: 0,
-      scale: 0.9,
+      x: SIDE_RIGHT_X,
+      y: SIDE_Y,
+      scaleX: SIDE_SCALE_X,
+      scaleY: SIDE_SCALE_Y,
       opacity: 1,
-      filter: "blur(2px)",
+      filter: SIDE_BLUR,
     },
-
-    // right (next) wraps behind to left when clicking left arrow
     wrapToRight: {
-      x: [POS.leftX, POS.rightX],
-      y: [0, 0],
-      scale: [0.9, 0.84, 0.9],
+      x: [SIDE_LEFT_X, SIDE_RIGHT_X],
+      y: [SIDE_Y, SIDE_Y],
+      scaleX: [SIDE_SCALE_X, 0.72, SIDE_SCALE_X],
+      scaleY: [SIDE_SCALE_Y, 0.76, SIDE_SCALE_Y],
       opacity: [1, 1, 1],
-      filter: ["blur(2px)", "blur(3px)", "blur(2px)"],
+      filter: [SIDE_BLUR, "blur(8px)", SIDE_BLUR],
     },
-
-    // left (prev) wraps behind to right when clicking right arrow
     wrapToLeft: {
-      x: [POS.rightX, POS.leftX],
-      y: [0, 0],
-      scale: [0.9, 0.84, 0.9],
+      x: [SIDE_RIGHT_X, SIDE_LEFT_X],
+      y: [SIDE_Y, SIDE_Y],
+      scaleX: [SIDE_SCALE_X, 0.72, SIDE_SCALE_X],
+      scaleY: [SIDE_SCALE_Y, 0.76, SIDE_SCALE_Y],
       opacity: [1, 1, 1],
-      filter: ["blur(2px)", "blur(3px)", "blur(2px)"],
+      filter: [SIDE_BLUR, "blur(8px)", SIDE_BLUR],
     },
   };
 
-  const zFor = (role: Role) => {
+  const zFor = (role: Role): number => {
     if (phase !== "animating") {
       if (role === "center") return 30;
       return 10;
     }
 
     if (dir === "next") {
-      // right -> center, center -> left, left wraps behind to right
       if (role === "right") return 50;
       if (role === "center") return 30;
       return 0;
-    } else {
-      // left -> center, center -> right, right wraps behind to left
-      if (role === "left") return 50;
-      if (role === "center") return 30;
-      return 0;
     }
+
+    if (role === "left") return 50;
+    if (role === "center") return 30;
+    return 0;
   };
 
-  const animateStep = (nextDir: Direction) => {
+  const animateStep = (nextDir: Direction): void => {
     if (phase !== "idle") return;
 
     setPhase("animating");
@@ -198,11 +209,18 @@ export default function EventCarousel({
     });
   }, [doneCount, dir, n, phase]);
 
-  const goPrev = () => animateStep("prev");
-  const goNext = () => animateStep("next");
-  const onDone = () => setDoneCount((c) => c + 1);
+  const goPrev = (): void => animateStep("prev");
+  const goNext = (): void => animateStep("next");
 
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const onDone = (): void => {
+    if (phase !== "animating") return;
+    setDoneCount((c) => c + 1);
+  };
+
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ): void => {
     if (phase !== "idle") return;
 
     const swipeThreshold = 20;
@@ -214,45 +232,40 @@ export default function EventCarousel({
     }
   };
 
-  return (
-        <section className="relative overflow-hidden bg-[linear-gradient(90deg,#c7641f_0%,#9f4b18_38%,#7a2d0b_100%)] px-4 pb-10 pt-8 text-white">
-      <div className="mx-auto flex max-w-[980px] justify-center">
-        <h2
-          className="text-center text-[44px] font-normal leading-none text-white drop-shadow-[0_1px_0_rgba(0,0,0,0.2)]"
-          style={{ fontFamily: '"Alcazar", serif' }}
+  if (n === 1 && currentEvent) {
+    return (
+      <section className="relative flex w-full flex-col items-center gap-4 overflow-hidden bg-[linear-gradient(120deg,var(--color-primary)_0%,var(--color-primary-2)_70%,var(--color-primary-2)_100%)] px-4 py-14 font-sans text-[color:var(--color-text-light)]">
+        <div className="flex h-[59px] w-full items-center justify-center">
+          <h2 className="[font-family:var(--font-display),serif] text-center text-[44px] font-normal leading-none text-[color:var(--color-text-light)] drop-shadow-[0_1px_0_rgba(0,0,0,0.2)]">
+            {title}
+          </h2>
+        </div>
+
+        <div className="flex h-[566px] w-full max-w-[1166px] items-start justify-center pt-[18px]">
+          <EventCard event={currentEvent} />
+        </div>
+
+        <Link
+          href={viewAllHref}
+          className="relative inline-flex h-[20px] w-[128px] items-center justify-center whitespace-nowrap text-center text-[16px] font-bold normal-case leading-[20px] text-[color:var(--color-text-light)] transition-colors after:absolute after:left-0 after:top-full after:h-[5px] after:w-full after:bg-[color:var(--color-text-light)] after:content-[''] hover:text-[color:var(--color-accent)] hover:after:bg-[color:var(--color-accent)]"
         >
+          View All Events
+        </Link>
+      </section>
+    );
+  }
+
+  return (
+    <section className="relative flex w-full flex-col items-center gap-4 overflow-hidden bg-[linear-gradient(120deg,var(--color-primary)_0%,var(--color-primary-2)_70%,var(--color-primary-2)_100%)] px-4 py-14 font-sans text-[color:var(--color-text-light)]">
+      <div className="flex h-[59px] w-full items-center justify-center">
+        <h2 className="[font-family:var(--font-display),serif] text-center text-[44px] font-normal leading-none text-[color:var(--color-text-light)] drop-shadow-[0_1px_0_rgba(0,0,0,0.2)]">
           {title}
         </h2>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-[1320px] items-center justify-center gap-20">
-        <button
-          type="button"
-          onClick={goPrev}
-          disabled={phase !== "idle"}
-          aria-label="Previous event"
-          className="z-20 grid h-[54px] w-[54px] shrink-0 place-items-center rounded-full bg-white text-[#9c4718] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 20 20"
-            fill="none"
-            aria-hidden="true"
-            className="translate-x-[-1px]"
-          >
-            <path
-              d="M12.5 4.5L7 10L12.5 15.5"
-              stroke="currentColor"
-              strokeWidth="2.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
+      <div className="relative flex h-[566px] w-full max-w-[1260px] items-center justify-center">
         <motion.div
-          className="relative h-[470px] w-full max-w-[980px] cursor-grab active:cursor-grabbing"
+          className="relative h-[566px] w-full max-w-[1166px] cursor-grab active:cursor-grabbing"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.12}
@@ -261,8 +274,12 @@ export default function EventCarousel({
           {prevEvent && (
             <motion.div
               initial={false}
-              className="absolute left-1/2 top-1/2 w-[56%] -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex: zFor("left") }}
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              style={{
+                zIndex: zFor("left"),
+                transformOrigin: "center center",
+              }}
               animate={roleMap.left}
               variants={variants}
               transition={phase === "animating" ? TRANSITION_ANIM : TRANSITION_NONE}
@@ -275,8 +292,11 @@ export default function EventCarousel({
           {currentEvent && (
             <motion.div
               initial={false}
-              className="absolute left-1/2 top-1/2 w-[56%] -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex: zFor("center") }}
+              className="absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              style={{
+                zIndex: zFor("center"),
+                transformOrigin: "center center",
+              }}
               animate={roleMap.center}
               variants={variants}
               transition={phase === "animating" ? TRANSITION_ANIM : TRANSITION_NONE}
@@ -289,8 +309,12 @@ export default function EventCarousel({
           {nextEvent && (
             <motion.div
               initial={false}
-              className="absolute left-1/2 top-1/2 w-[56%] -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex: zFor("right") }}
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              style={{
+                zIndex: zFor("right"),
+                transformOrigin: "center center",
+              }}
               animate={roleMap.right}
               variants={variants}
               transition={phase === "animating" ? TRANSITION_ANIM : TRANSITION_NONE}
@@ -301,26 +325,56 @@ export default function EventCarousel({
           )}
         </motion.div>
 
-        <button
-          type="button"
-          onClick={goNext}
-          disabled={phase !== "idle"}
-          aria-label="Next event"
-          className="z-20 grid h-[54px] w-[54px] shrink-0 place-items-center rounded-full bg-white text-[#9c4718] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <svg width="40" height="40" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path
-              d="M7.5 4.5L13 10L7.5 15.5"
-              stroke="currentColor"
-              strokeWidth="2.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-50 flex h-[50px] w-full max-w-[1260px] -translate-x-1/2 -translate-y-1/2 items-center justify-between px-[30px]">
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={phase !== "idle"}
+            aria-label="Previous event"
+            className="pointer-events-auto grid h-[50px] w-[50px] shrink-0 place-items-center rounded-full bg-[color:var(--color-text-light)] text-[color:var(--color-secondary)] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+              className="-translate-x-[1px]"
+            >
+              <path
+                d="M12.5 4.5L7 10L12.5 15.5"
+                stroke="currentColor"
+                strokeWidth="2.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={phase !== "idle"}
+            aria-label="Next event"
+            className="pointer-events-auto grid h-[50px] w-[50px] shrink-0 place-items-center rounded-full bg-[color:var(--color-text-light)] text-[color:var(--color-secondary)] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <svg width="36" height="36" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path
+                d="M7.5 4.5L13 10L7.5 15.5"
+                stroke="currentColor"
+                strokeWidth="2.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <div className="mt-8 flex justify-center gap-3" aria-label="Carousel pagination">
+      <div
+        className="flex h-[35px] items-center justify-center gap-[13px] py-[10px]"
+        aria-label="Carousel pagination"
+      >
         {Array.from({ length: n }).map((_, i) => {
           const isActive = i === activeIndex;
 
@@ -336,10 +390,10 @@ export default function EventCarousel({
               aria-label={`Go to slide ${i + 1}`}
               aria-current={isActive ? "true" : "false"}
               className={[
-                "h-[14px] w-[14px] rounded-full transition",
+                "h-[15px] w-[15px] rounded-full transition",
                 isActive
-                  ? "border border-[#e2b15a] bg-[#e2b15a]"
-                  : "border border-white bg-white",
+                  ? "border border-[color:var(--color-accent)] bg-[color:var(--color-accent)]"
+                  : "border border-[color:var(--color-text-light)] bg-[color:var(--color-text-light)]",
                 phase !== "idle" ? "pointer-events-none" : "",
               ].join(" ")}
             />
@@ -347,14 +401,12 @@ export default function EventCarousel({
         })}
       </div>
 
-      <div className="mt-8 flex justify-center">
-        <Link
-          href={viewAllHref}
-          className="text-[15px] font-extrabold uppercase tracking-[0.01em] text-white underline underline-offset-[10px] decoration-[2px] hover:text-[#e2b15a] hover:decoration-[#e2b15a] transition-colors"
-        >
-          View All Events
-        </Link>
-      </div>
+      <Link
+        href={viewAllHref}
+        className="relative inline-flex h-[20px] w-[128px] items-center justify-center whitespace-nowrap text-center text-[16px] font-bold normal-case leading-[20px] text-[color:var(--color-text-light)] transition-colors after:absolute after:left-0 after:top-full after:h-[5px] after:w-full after:bg-[color:var(--color-text-light)] after:content-[''] hover:text-[color:var(--color-accent)] hover:after:bg-[color:var(--color-accent)]"
+      >
+        View All Events
+      </Link>
     </section>
   );
 }

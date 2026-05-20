@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function EventListCard({ event, isPast = false }) {
   return (
     <div className="flex gap-6 rounded-[8px] bg-[#D6E8F0] p-6 items-start">
-      {/* Date column */}
       <div className="flex-shrink-0 flex flex-col items-center w-[72px] pt-1">
         <span
           className="text-[#28282B] leading-none"
@@ -19,7 +18,6 @@ export default function EventListCard({ event, isPast = false }) {
         </span>
       </div>
 
-      {/* Content column */}
       <div className="flex flex-col gap-2 flex-1 min-w-0">
         <h3
           className="font-bold text-[#28282B] font-[var(--font-alexandria)]"

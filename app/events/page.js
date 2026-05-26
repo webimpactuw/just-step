@@ -10,7 +10,7 @@ const upcomingEvents = [
     time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
     location: "Snohomish County PUD",
     description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
-    href: "#",
+    href: "/events/chenchu-lakshmi-ballet",
     registerHref: "#",
   },
   {
@@ -21,7 +21,7 @@ const upcomingEvents = [
     time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
     location: "Snohomish County PUD",
     description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
-    href: "#",
+    href: "/events/chenchu-lakshmi-ballet",
     registerHref: "#",
   },
   {
@@ -32,7 +32,7 @@ const upcomingEvents = [
     time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
     location: "Snohomish County PUD",
     description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
-    href: "#",
+    href: "/events/chenchu-lakshmi-ballet",
     registerHref: "#",
   },
 ];

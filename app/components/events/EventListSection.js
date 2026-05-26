@@ -61,7 +61,7 @@ export default function EventListSection({ title, events, isPast = false }) {
   const visible = events.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   return (
-    <section className="bg-white px-8 py-14">
+    <section className="bg-white px-4 py-10 md:px-8 md:py-14">
       <div className="mx-auto max-w-3xl">
         <h2
           className="mb-10 text-center text-[#28282B]"

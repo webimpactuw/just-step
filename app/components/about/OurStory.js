@@ -1,8 +1,8 @@
 export default function OurStory() {
   return (
     <section id="our-story" className="scroll-mt-[90px] w-full bg-[#FAFAFA]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-[300px] pb-[88px] pt-14">
-        <h2 className="text-center font-[Alcazar] text-[56px] leading-[100%] tracking-[0] text-[#28282B]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 px-6 pb-12 pt-10 lg:gap-12 lg:px-[300px] lg:pb-[88px] lg:pt-14">
+        <h2 className="text-center font-[Alcazar] text-[40px] leading-[100%] tracking-[0] text-[#28282B] lg:text-[56px]">
           Our Story
         </h2>
 

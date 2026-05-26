@@ -6,7 +6,55 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="font-[family-name:var(--font-alexandria)] w-full bg-[#C05812] text-[#FAFAFA]">
-      <div className="flex min-h-[232px] w-full flex-row items-start justify-between gap-[10px] px-8 py-8">
+
+      <div className="flex flex-col gap-6 px-6 py-6 lg:hidden">
+        <div className="flex items-start justify-between">
+          <Image src="/Logo.png" alt="JustStep Logo" width={72} height={72} className="object-contain" />
+          <div className="flex flex-col items-start gap-3">
+            <p className="text-[16px] font-bold">Follow Us</p>
+            <div className="flex items-center gap-4">
+              <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/seattle_juststep?igsh=MTNneG00ZmdrM3F1NQ==" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <Image src="/Instagram.png" alt="Instagram" width={24} height={24} className="object-contain" />
+              </a>
+              <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#C05812"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-3 text-[16px] font-bold">
+            <Link href="/events" className="underline underline-offset-2">Events</Link>
+            <Link href="/about" className="underline underline-offset-2">About</Link>
+            <Link href="/donate" className="underline underline-offset-2">Donate</Link>
+          </div>
+          <div className="flex flex-col gap-3 text-[14px]">
+            <p className="text-[16px] font-bold">Contact Us</p>
+            <ContactRow icon="/Phone.png" alt="Phone">
+              <a href="tel:+14253948871" className="hover:underline">(425) 394-8871</a>
+            </ContactRow>
+            <ContactRow icon="/Email.png" alt="Email">
+              <a href="mailto:juststepinc@gmail.com" className="hover:underline">juststepinc@gmail.com</a>
+            </ContactRow>
+            <ContactRow icon="/Location.png" alt="Location" alignTop>
+              <a href="https://www.google.com/maps/search/?api=1&query=205+164th+Ave+NE+Bellevue+WA+98008" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                <span>205 164th Ave NE,</span><br /><span>Bellevue, WA 98008</span>
+              </a>
+            </ContactRow>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1 text-[13px]">
+          <p>Tax ID: 83-2272271</p>
+          <p>© 2026 JustStep Inc. All rights reserved.</p>
+        </div>
+      </div>
+
+      <div className="hidden min-h-[232px] w-full flex-row items-start justify-between gap-[10px] px-8 py-8 lg:flex">
         <div className="flex w-[278px] flex-col items-start gap-6">
           <Image
             src="/Logo.png"

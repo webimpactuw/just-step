@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function EventsBanner() {
   return (
     <section
-      className="relative overflow-hidden px-20 py-10"
+      className="relative overflow-hidden px-6 py-8 md:px-20 md:py-10"
       style={{
         background: "linear-gradient(90deg, #c7641f 0%, #9f4b18 38%, #7a2d0b 100%)",
       }}

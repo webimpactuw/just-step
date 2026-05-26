@@ -15,11 +15,11 @@ export default function SupportUs() {
       />
 
       <div className="relative z-10">
-        <h1 className="[font-family:var(--font-display)] text-[48px] leading-none text-[var(--color-text-light)] md:text-[64px]">
+        <h1 className="[font-family:var(--font-display)] text-[40px] leading-none text-[var(--color-text-light)] md:text-[48px] lg:text-[64px]">
           Support Us
         </h1>
 
-        <p className="mt-4 max-w-[979px] text-[20px] font-normal leading-[150%] tracking-normal text-[var(--color-text-light)]">
+        <p className="mt-4 max-w-[979px] text-[16px] font-normal leading-[150%] tracking-normal text-[var(--color-text-light)] md:text-[20px]">
           Your generous donations help us continue our mission of preserving
           and promoting Indian dances
         </p>

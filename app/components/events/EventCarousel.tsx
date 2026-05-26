@@ -275,7 +275,7 @@ export default function EventCarousel({
             <motion.div
               initial={false}
               aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              className="pointer-events-none absolute left-1/2 top-[18px] hidden w-[600px] -translate-x-1/2 md:block"
               style={{
                 zIndex: zFor("left"),
                 transformOrigin: "center center",
@@ -292,7 +292,7 @@ export default function EventCarousel({
           {currentEvent && (
             <motion.div
               initial={false}
-              className="absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              className="absolute left-1/2 top-[18px] w-[90%] -translate-x-1/2 md:w-[600px]"
               style={{
                 zIndex: zFor("center"),
                 transformOrigin: "center center",
@@ -310,7 +310,7 @@ export default function EventCarousel({
             <motion.div
               initial={false}
               aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-[18px] w-[600px] -translate-x-1/2"
+              className="pointer-events-none absolute left-1/2 top-[18px] hidden w-[600px] -translate-x-1/2 md:block"
               style={{
                 zIndex: zFor("right"),
                 transformOrigin: "center center",

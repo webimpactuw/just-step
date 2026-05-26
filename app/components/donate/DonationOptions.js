@@ -21,7 +21,7 @@ const donationOptions = [
 
 function DonationCard({ option }) {
   return (
-    <article className="w-full max-w-[544px] min-h-[476px] overflow-hidden rounded-[10px] border-[3px] border-[var(--color-dark-blue)] bg-[var(--background)]">
+    <article className="w-full max-w-[544px] overflow-hidden rounded-[10px] border-[3px] border-[var(--color-dark-blue)] bg-[var(--background)]">
       <div className="flex h-[144px] items-center border-b-[3px] border-[var(--color-dark-blue)] bg-[#D6E8EE] px-8">
         <img
           src={option.logo}
@@ -31,7 +31,7 @@ function DonationCard({ option }) {
       </div>
 
       <div className="flex flex-col gap-7 p-8">
-        <p className="min-h-[180px] text-[20px] leading-[180%] text-[var(--foreground)]">
+        <p className="text-[18px] leading-[180%] text-[var(--foreground)] md:text-[20px]">
           {option.description}
         </p>
 

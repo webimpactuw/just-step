@@ -35,7 +35,7 @@ export default function Vision() {
         <Image src="/Flower.png" alt="" width={360} height={390} />
       </div>
 
-      <div className="relative mx-auto max-w-3xl">
+      <div className="relative mx-auto w-full max-w-3xl">
         <h2
           className="mb-12 text-center text-white"
           style={{ fontFamily: '"Alcazar", serif', fontSize: "40px", fontWeight: 400, lineHeight: "100%" }}
@@ -43,7 +43,7 @@ export default function Vision() {
           Vision
         </h2>
 
-        <div className="grid grid-cols-4 gap-x-10">
+        <div className="grid grid-cols-1 gap-y-10 md:grid-cols-4 md:gap-x-10 md:gap-y-0">
           {visionItems.map((item) => (
             <div key={item.title} className="flex flex-col items-center text-center gap-3">
               <div className="flex items-center justify-center h-[72px]">

@@ -29,12 +29,12 @@ const testimonialData = [
 
 export default function Testimonial() {
   return (
-    <section className="flex w-full flex-col gap-12 bg-[var(--background)] px-8 py-[88px]">
-      <h2 className="m-0 text-center font-[family-name:var(--font-display)] text-[56px] font-normal leading-none text-[var(--foreground)]">
+    <section className="flex w-full flex-col gap-8 bg-[var(--background)] px-6 py-12 md:gap-12 md:px-8 md:py-[88px]">
+      <h2 className="m-0 text-center font-[family-name:var(--font-display)] text-[40px] font-normal leading-none text-[var(--foreground)] md:text-[56px]">
         Testimonials
       </h2>
 
-      <div className="mx-auto flex w-full max-w-[1376px] flex-wrap items-stretch justify-center gap-8 min-[1390px]:justify-between">
+      <div className="mx-auto flex w-full max-w-[1376px] flex-col items-stretch gap-6 md:flex-row md:flex-wrap md:justify-center md:gap-8 min-[1390px]:justify-between">
         {testimonialData.map((item) => (
           <TestimonialCard
             key={item.id}

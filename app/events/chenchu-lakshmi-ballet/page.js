@@ -161,31 +161,22 @@ export default function ChenchuLakshmiBallet() {
 
       <div className="border-t border-[#28282B]/10 bg-white px-6 py-8">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
-          <Link
-            href="/events"
-            className="flex flex-col gap-1 font-[var(--font-alexandria)] transition-colors hover:text-[#3F6F7A]"
-          >
-            <span className="flex items-center gap-2 text-[13px] text-[#28282B]/60">
+          <div className="flex flex-col gap-1 font-[var(--font-alexandria)]">
+            <span className="flex items-center gap-2 text-[13px] text-[#28282B]/30">
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              Date
             </span>
-            <span className="text-[16px] font-bold text-[#28282B]">Previous event name</span>
-          </Link>
-
-          <Link
-            href="/events"
-            className="flex flex-col items-end gap-1 font-[var(--font-alexandria)] transition-colors hover:text-[#3F6F7A]"
-          >
-            <span className="flex items-center gap-2 text-[13px] text-[#28282B]/60">
-              Date
+            <span className="text-[16px] font-bold text-transparent select-none">&nbsp;</span>
+          </div>
+          <div className="flex flex-col items-end gap-1 font-[var(--font-alexandria)]">
+            <span className="flex items-center gap-2 text-[13px] text-[#28282B]/30">
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M7.5 4.5L13 10L7.5 15.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            <span className="text-[16px] font-bold text-[#28282B]">Next event name</span>
-          </Link>
+            <span className="text-[16px] font-bold text-transparent select-none">&nbsp;</span>
+          </div>
         </div>
       </div>
     </main>

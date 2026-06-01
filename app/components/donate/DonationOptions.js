@@ -6,7 +6,7 @@ const donationOptions = [
     description:
       "Support JustStep directly through our Zeffy by making a secure, fee-free donation on our page. Every donation, big or small, helps us continue our mission and truly makes a difference—your support means the world to us!",
     buttonText: "DONATE VIA ZEFFY",
-    href: "https://www.zeffy.com/",
+    href: "https://www.zeffy.com/en-US/ticketing/chenchulakshmi--2026?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
   },
   {
     name: "Benevity",
@@ -15,7 +15,7 @@ const donationOptions = [
     description:
       "If your employer offers workplace giving, you can donate to JustStep through Benevity by searching for our nonprofit in your company’s portal. Many employers offer matching, so your gift can go twice as far.",
     buttonText: "DONATE VIA BENEVITY",
-    href: "https://benevity.com/",
+    href: "https://causes.benevity.org/user",
   },
 ];
 

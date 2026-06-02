@@ -1,39 +1,41 @@
 import EventsBanner from "../components/events/EventsBanner";
 import EventListSection from "../components/events/EventListSection";
+import { client } from "../../sanity/lib/client";
+import { EVENT_LIST_QUERY } from "../../sanity/lib/queries";
 
-const upcomingEvents = [
-  {
-    id: "upcoming-1",
-    day: "17",
-    month: "May",
-    title: "Chenchu Lakshmi Ballet",
-    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
-    location: "Snohomish County PUD",
-    description: "Don't miss the magic of Chenchu Lakshmi – a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
-    href: "/events/chenchu-lakshmi-ballet",
-    registerHref: "#",
-  },
-];
+export const dynamic = "force-dynamic";
 
-const pastEvents = [
-  {
-    id: "past-1",
-    day: "17",
-    month: "May",
-    title: "Dance Against COVID",
-    time: "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
-    location: "Snohomish County PUD",
-    description: "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
-    href: "#",
-  },
-];
+export default async function Events() {
+  let events = [];
 
-export default function Events() {
+  try {
+    events = await client.fetch(EVENT_LIST_QUERY, {}, { cache: "no-store" });
+  } catch (error) {
+    console.error("Failed to fetch Sanity events:", error);
+  }
+
+  const upcomingEvents = events.filter((event) => event.status !== "past");
+  const pastEvents = events.filter((event) => event.status === "past");
+
   return (
     <main>
       <EventsBanner />
-      <EventListSection title="Upcoming Events" events={upcomingEvents} isPast={false} />
-      <EventListSection title="Past Events" events={pastEvents} isPast={true} />
+
+      <EventListSection
+        id="upcoming-events"
+        title="Upcoming Events"
+        events={upcomingEvents}
+        isPast={false}
+        spacing="top"
+      />
+
+      <EventListSection
+        id="past-events"
+        title="Past Events"
+        events={pastEvents}
+        isPast={true}
+        spacing="tight"
+      />
     </main>
   );
 }

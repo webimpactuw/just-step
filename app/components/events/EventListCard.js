@@ -1,155 +1,321 @@
 import Link from "next/link";
 
+function ClockIcon() {
+  return (
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-[16.67px] w-[16.67px] shrink-0"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg
+      width="16"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-[1px] h-[20px] w-[16px] shrink-0"
+      aria-hidden="true"
+    >
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
 export default function EventListCard({ event, isPast = false }) {
+  const accentColor = isPast ? "#82442B" : "#3F6F7A";
+  const desktopHeight = isPast ? "md:h-[350px]" : "md:h-[325px]";
+
   return (
     <>
       {/* Mobile */}
-      <div className="md:hidden overflow-hidden rounded-[12px] border border-[#3F6F7A] shadow-sm">
+      <article
+        className="overflow-hidden rounded-[10px] border-[3px] bg-[#FAFAFA] md:hidden"
+        style={{ borderColor: accentColor }}
+      >
         <div
-          className="flex items-center justify-center gap-4 py-5"
-          style={{ background: "#3F6F7A" }}
+          className="flex items-center justify-center gap-4 px-4 py-6"
+          style={{ backgroundColor: accentColor }}
         >
           <span
-            className="leading-none text-white"
-            style={{ fontFamily: '"Alcazar", serif', fontSize: "52px", fontWeight: 400 }}
+            className="text-center text-[#FAFAFA]"
+            style={{
+              fontFamily: '"Alexandria", sans-serif',
+              fontSize: "56px",
+              fontWeight: 700,
+              lineHeight: "100%",
+            }}
           >
             {event.day}
           </span>
+
           <span
-            className="text-white"
-            style={{ fontFamily: '"Alcazar", serif', fontSize: "28px", fontWeight: 400 }}
+            className="text-center text-[#FAFAFA]"
+            style={{
+              fontFamily: '"Alcazar", serif',
+              fontSize: "40px",
+              fontWeight: 400,
+              lineHeight: "100%",
+            }}
           >
             {event.month}
           </span>
         </div>
 
-        <div className="flex flex-col gap-3 bg-white p-4">
+        <div className="flex flex-col gap-4 p-5">
           <h3
-            className="font-bold text-[#28282B] font-[var(--font-alexandria)]"
-            style={{ fontSize: "18px" }}
+            className="text-[#28282B]"
+            style={{
+              fontFamily: '"Alexandria", sans-serif',
+              fontSize: "24px",
+              fontWeight: 700,
+              lineHeight: "110%",
+            }}
           >
             {event.title}
           </h3>
 
-          <div
-            className="flex items-start gap-2 font-[var(--font-alexandria)]"
-            style={{ fontSize: "13px", color: "#9f4b18" }}
-          >
-            <svg
-              width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              className="mt-[2px] shrink-0"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>{event.time}</span>
-          </div>
+          {event.time && (
+            <div className="flex items-center gap-2 text-[#28282B]">
+              <ClockIcon />
+              <span
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  lineHeight: "120%",
+                }}
+              >
+                {event.time}
+              </span>
+            </div>
+          )}
 
-          <div
-            className="flex items-center gap-2 font-[var(--font-alexandria)]"
-            style={{ fontSize: "13px", color: "#3F6F7A" }}
-          >
-            <svg
-              width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              className="shrink-0"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{event.location}</span>
-          </div>
+          {event.location && (
+            <div className="flex items-start gap-2 text-[#28282B]">
+              <LocationIcon />
+              <span
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  lineHeight: "150%",
+                }}
+              >
+                {event.location}
+              </span>
+            </div>
+          )}
 
-          <div className="mt-1 flex flex-col gap-2">
+          {event.description && (
+            <p
+              className="text-[#28282B]"
+              style={{
+                fontFamily: '"Alexandria", sans-serif',
+                fontSize: "16px",
+                fontWeight: 400,
+                lineHeight: "25px",
+              }}
+            >
+              {event.description}
+            </p>
+          )}
+
+          <div className="flex flex-col gap-3 pt-1">
             {!isPast && event.registerHref && (
               <Link
                 href={event.registerHref}
-                className="flex items-center justify-center rounded-full bg-[#3F6F7A] py-3 font-bold font-[var(--font-alexandria)] text-sm text-white transition-colors hover:bg-[#325a63]"
+                className="flex h-12 items-center justify-center rounded-[20px] bg-[#3F6F7A] px-5 font-bold text-[#FAFAFA] transition-colors hover:bg-[#325a63]"
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  lineHeight: "100%",
+                }}
               >
                 REGISTER
               </Link>
             )}
+
             <Link
               href={event.href}
-              className="flex items-center justify-center rounded-full border border-[#28282B] py-3 font-bold font-[var(--font-alexandria)] text-sm text-[#28282B] transition-colors hover:bg-[#28282B] hover:text-white"
+              className="flex h-12 items-center justify-center rounded-[20px] border-[3px] bg-[#FAFAFA] px-5 font-bold transition-colors hover:text-[#FAFAFA]"
+              style={{
+                borderColor: "#3F6F7A",
+                color: "#3F6F7A",
+                fontFamily: '"Alexandria", sans-serif',
+                fontSize: "16px",
+                lineHeight: "100%",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#3F6F7A";
+                e.currentTarget.style.color = "#FAFAFA";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#FAFAFA";
+                e.currentTarget.style.color = "#3F6F7A";
+              }}
             >
               LEARN MORE
             </Link>
           </div>
         </div>
-      </div>
+      </article>
 
       {/* Desktop */}
-      <div className="hidden md:flex gap-6 rounded-[8px] bg-[#D6E8F0] p-6 items-start">
-        <div className="flex-shrink-0 flex flex-col items-center w-[72px] pt-1">
+      <article
+        className={`hidden w-full max-w-[1138px] overflow-hidden rounded-[10px] border-[3px] bg-[#FAFAFA] md:flex ${desktopHeight}`}
+        style={{ borderColor: accentColor }}
+      >
+        <div
+          className="flex h-full w-[208px] shrink-0 flex-col items-center justify-center rounded-l-[7px] px-4 py-8"
+          style={{ backgroundColor: accentColor }}
+        >
           <span
-            className="text-[#28282B] leading-none"
-            style={{ fontFamily: '"Alcazar", serif', fontSize: "52px", fontWeight: 400 }}
+            className="flex h-[78px] w-[176px] items-center justify-center text-center text-[#FAFAFA]"
+            style={{
+              fontFamily: '"Alexandria", sans-serif',
+              fontSize: "64px",
+              fontWeight: 700,
+              lineHeight: "100%",
+            }}
           >
             {event.day}
           </span>
+
           <span
-            className="text-[#28282B]"
-            style={{ fontFamily: '"Alcazar", serif', fontSize: "24px", fontWeight: 400 }}
+            className="flex h-[51px] w-[176px] items-center justify-center text-center text-[#FAFAFA]"
+            style={{
+              fontFamily: '"Alcazar", serif',
+              fontSize: "48px",
+              fontWeight: 400,
+              lineHeight: "100%",
+            }}
           >
             {event.month}
           </span>
         </div>
 
-        <div className="flex flex-col gap-2 flex-1 min-w-0">
+        <div className="flex min-w-0 flex-1 flex-col justify-center px-8 py-8">
           <h3
-            className="font-bold text-[#28282B] font-[var(--font-alexandria)]"
-            style={{ fontSize: "20px" }}
+            className="mb-4 truncate text-[#28282B]"
+            style={{
+              fontFamily: '"Alexandria", sans-serif',
+              fontSize: "32px",
+              fontWeight: 700,
+              lineHeight: "100%",
+            }}
           >
             {event.title}
           </h3>
 
-          <div
-            className="flex items-center gap-2 font-[var(--font-alexandria)]"
-            style={{ fontSize: "13px", color: "#9f4b18" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>{event.time}</span>
-          </div>
+          {event.time && (
+            <div className="mb-2 flex items-center gap-2 text-[#28282B]">
+              <ClockIcon />
+              <span
+                className="truncate"
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                }}
+              >
+                {event.time}
+              </span>
+            </div>
+          )}
 
-          <div
-            className="flex items-center gap-2 font-[var(--font-alexandria)]"
-            style={{ fontSize: "13px", color: "#3F6F7A" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{event.location}</span>
-          </div>
+          {event.location && (
+            <div className="mb-4 flex items-start gap-2 text-[#28282B]">
+              <LocationIcon />
+              <span
+                className="truncate"
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  lineHeight: "150%",
+                }}
+              >
+                {event.location}
+              </span>
+            </div>
+          )}
 
-          <p
-            className="text-[#28282B] font-[var(--font-alexandria)] leading-relaxed"
-            style={{ fontSize: "14px" }}
-          >
-            {event.description}
-          </p>
+          {event.description && (
+            <p
+              className="mb-6 max-w-[759px] overflow-hidden text-[#28282B]"
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: isPast ? 3 : 2,
+                WebkitBoxOrient: "vertical",
+                fontFamily: '"Alexandria", sans-serif',
+                fontSize: "16px",
+                fontWeight: 400,
+                lineHeight: "25px",
+              }}
+            >
+              {event.description}
+            </p>
+          )}
 
-          <div className="flex gap-3 mt-2 flex-wrap">
+          <div className="flex flex-wrap items-center gap-3">
             {!isPast && event.registerHref && (
               <Link
                 href={event.registerHref}
-                className="px-5 py-2 rounded-full bg-[#3F6F7A] text-white font-bold font-[var(--font-alexandria)] text-sm hover:bg-[#325a63] transition-colors"
+                className="flex h-12 items-center justify-center rounded-[20px] bg-[#3F6F7A] px-5 font-bold text-[#FAFAFA] transition-colors hover:bg-[#325a63]"
+                style={{
+                  fontFamily: '"Alexandria", sans-serif',
+                  fontSize: "16px",
+                  lineHeight: "100%",
+                }}
               >
                 REGISTER
               </Link>
             )}
+
             <Link
               href={event.href}
-              className="px-5 py-2 rounded-full border border-[#28282B] text-[#28282B] font-bold font-[var(--font-alexandria)] text-sm hover:bg-[#28282B] hover:text-white transition-colors"
+              className="flex h-12 items-center justify-center rounded-[20px] border-[3px] bg-[#FAFAFA] px-5 font-bold transition-colors hover:text-[#FAFAFA]"
+              style={{
+                borderColor: "#3F6F7A",
+                color: "#3F6F7A",
+                fontFamily: '"Alexandria", sans-serif',
+                fontSize: "16px",
+                lineHeight: "100%",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#3F6F7A";
+                e.currentTarget.style.color = "#FAFAFA";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#FAFAFA";
+                e.currentTarget.style.color = "#3F6F7A";
+              }}
             >
               LEARN MORE
             </Link>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 }

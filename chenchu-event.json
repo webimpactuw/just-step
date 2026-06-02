@@ -1,0 +1,59 @@
+{
+  "_id": "event-chenchu-lakshmi-ballet",
+  "_type": "event",
+  "eventStatus": "upcoming",
+  "displayOrder": 1,
+  "title": "Chenchu Lakshmi Ballet",
+  "slug": {
+    "_type": "slug",
+    "current": "chenchu-lakshmi-ballet"
+  },
+  "day": "17",
+  "month": "May",
+  "cardTime": "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+  "cardLocation": "Snohomish County PUD",
+  "cardDescription": "Don't miss the magic of Chenchu Lakshmi \u2013 a Kuchipudi ballet performed in collaboration with Kalamandapam Kuchipudi Dance School!",
+  "dateLabel": "Sunday, May 17, 2026",
+  "timeLabel": "Shows at 3:00 PM \u2013 5:00 PM & 6:00 PM \u2013 8:00 PM PST",
+  "locationName": "Snohomish County PUD",
+  "locationAddress": "2320 California St, Everett, WA 98201, USA",
+  "ticketInfo": "General Admission Ticket: $25",
+  "detailDescription": "We are pleased to invite you to the KKDS 2026 production ballet, themed \u201cChenchu Lakshmi\u201d. This timeless Kuchipudi ballet tells the story of devotion triumphing over tyranny. The demon king Hiranyakashipu persecutes devotees of Vishnu, but his son Prahlada remains steadfast in faith. When challenged, Vishnu appears as Narasimha from a pillar and destroys the tyrant, restoring dharma. His cosmic fury is calmed when Lakshmi incarnates as Chenchu Lakshmi, transforming Him into the serene Narahari and bringing harmony and Loka Kalyanam to the world. This experience will leave you in awe! Secure your spot now and get ready for an unforgettable journey! Don\u2019t miss out on the chance to reserve your spot with family and friends!",
+  "registerUrl": "https://example.com",
+  "mainImagePath": "/Flyer1.jpg",
+  "sponsors": [
+    {
+      "_key": "sponsor1",
+      "_type": "sponsor",
+      "name": "Sponsor 1",
+      "logoPath": "/Sponsor1.png"
+    },
+    {
+      "_key": "sponsor2",
+      "_type": "sponsor",
+      "name": "Sponsor 2",
+      "logoPath": "/Sponsor2.png"
+    },
+    {
+      "_key": "sponsor3",
+      "_type": "sponsor",
+      "name": "Sponsor 3",
+      "logoPath": "/Sponsor3.png"
+    },
+    {
+      "_key": "sponsor4",
+      "_type": "sponsor",
+      "name": "Sponsor 4",
+      "logoPath": "/Sponsor4.png"
+    }
+  ],
+  "gallerySlides": [
+    {
+      "_key": "gallery1",
+      "_type": "gallerySlide",
+      "imagePath": "/Flyer1.jpg",
+      "alt": "Chenchu Lakshmi flyer",
+      "objectPosition": "center"
+    }
+  ]
+}

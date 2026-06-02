@@ -1,0 +1,21 @@
+{
+  "_id": "event-dance-against-covid",
+  "_type": "event",
+  "eventStatus": "past",
+  "displayOrder": 2,
+  "title": "Dance Against COVID",
+  "slug": {
+    "_type": "slug",
+    "current": "dance-against-covid"
+  },
+  "day": "17",
+  "month": "May",
+  "cardTime": "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+  "cardLocation": "Snohomish County PUD",
+  "cardDescription": "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
+  "dateLabel": "May 17",
+  "timeLabel": "3:00 PM - 5:00 PM & 6:00 PM - 8:00 PM",
+  "locationName": "Snohomish County PUD",
+  "detailDescription": "Dance Against COVID brought the energy of Indian classical dance online during the pandemic, uniting dancers through virtual workshops and safe recording sessions. Beyond staying connected, the initiative helped raise funds for food banks and communities in need.",
+  "mainImagePath": "/events/event_placeholder_img.png"
+}

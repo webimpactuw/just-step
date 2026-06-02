@@ -1,0 +1,12 @@
+{
+  "_id": "event-sanity-test-1",
+  "_type": "event",
+  "title": "Sanity Test Event",
+  "slug": {
+    "_type": "slug",
+    "current": "sanity-test-event"
+  },
+  "start": "Jun 10 • 6:00 PM – 8:00 PM",
+  "description": "This event was created directly from the terminal to test the Sanity connection.",
+  "ctaLabel": "LEARN MORE"
+}

@@ -62,7 +62,7 @@ export default function Hero() {
           />
           <div className="relative overflow-hidden rounded-[10px]">
             <Image
-              src="/IMG_7369.jpg"
+              src="/Performance.jpg"
               alt="Dance performance outdoors"
               width={400}
               height={260}
@@ -97,14 +97,14 @@ export default function Hero() {
           </div>
 
           <FramedImage
-            src="/IMG_7384.jpg"
+            src="/Dancers.jpg"
             alt="Dancers holding flowers"
             left="79px" top="37px" width="365.26px" height="241.76px"
             frameLeft="9.01px" frameTop="7.02px"
           />
 
           <FramedImage
-            src="/IMG_7369.jpg"
+            src="/Performance.jpg"
             alt="Dance performance outdoors"
             left="79px" top="311px" width="501.89px" height="332.19px"
             frameLeft="12.36px" frameTop="9.65px"
